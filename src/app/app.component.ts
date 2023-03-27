@@ -17,11 +17,14 @@ export class AppComponent implements OnInit {
 ngOnInit(){
 
   this.characterForm=this.formBuilder.group({
-    input:['',[Validators.required,Validators.pattern('[a-zA-Z]*')]]
+    input:['',[Validators.required,Validators.pattern('[0-9a-zA-Z ]*')]]
   })
 
 }
   countChars() {
+    if(this.characterForm.invalid){
+      return
+    }
     let counts: { [key: string]: number } = {};
     for (let i = 0; i < this.characterForm.value.input.length; i++) {
       let char = this.characterForm.value.input.charAt(i);
